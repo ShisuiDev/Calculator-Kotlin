@@ -11,7 +11,7 @@
 9-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml
 10
 11    <application
-11-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:5:5-19:19
+11-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:5:5-18:19
 12        android:allowBackup="true"
 12-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:6:9-35
 13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -30,17 +30,17 @@
 21        android:theme="@style/AppTheme" >
 21-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:11:9-40
 22        <activity android:name="com.dicoding.calculator.MainActivity" >
-22-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:12:9-18:20
+22-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:12:9-17:20
 22-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:12:19-47
 23            <intent-filter>
-23-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:13:13-17:29
+23-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:13:13-16:29
 24                <action android:name="android.intent.action.MAIN" />
 24-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:14:17-69
 24-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:14:25-66
 25
 26                <category android:name="android.intent.category.LAUNCHER" />
-26-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:16:17-77
-26-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:16:27-74
+26-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:15:17-77
+26-->D:\KotlinProject\AndroidUdemyOreo\Calculator\app\src\main\AndroidManifest.xml:15:27-74
 27            </intent-filter>
 28        </activity>
 29    </application>
