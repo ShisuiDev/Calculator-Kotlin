@@ -8,17 +8,22 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 
+//mendefinsikan variabel yang digunakan untuk meresume aplikasi ketika android dimiringkan
 private const val STATE_PENDING_OPERATION = "PendingOperation"
 private const val STATE_OPERAND1 = "Operand1"
+private const val STATE_OPERAND1_STORED = "Operand1_Stored"
 
 class MainActivity : AppCompatActivity() {
+    //melakukan pengenalan variabel dengan jenis material android lateinit digunakan ketika kita ingin membuat non-null type
     private lateinit var result: EditText
     private lateinit var newNumber: EditText
+
+    //Operasi yang kita buat tidak dapat diubah nilainya dan kita ingin membuat variabel yang tidak dapat diganti dan non-null type
     private val displayOperation by lazy(LazyThreadSafetyMode.NONE) { findViewById<TextView>(R.id.operation) }
 
     //variabel to hold and the operands and type of calculation
     private var operand1: Double? = null
-    private var pendingOPeration = "="
+    private var pendingOperation = "="
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,8 +76,8 @@ class MainActivity : AppCompatActivity() {
             } catch (e: NumberFormatException) {
                 newNumber.setText("")
             }
-            pendingOPeration = op
-            displayOperation.text = pendingOPeration
+            pendingOperation = op
+            displayOperation.text = pendingOperation
         }
         buttonEquals.setOnClickListener(opListener)
         buttonPlus.setOnClickListener(opListener)
@@ -85,10 +90,10 @@ class MainActivity : AppCompatActivity() {
         if (operand1 == null) {
             operand1 = value
         } else {
-            if (pendingOPeration == "=") {
-                pendingOPeration = operation
+            if (pendingOperation == "=") {
+                pendingOperation = operation
             }
-            when (pendingOPeration) {
+            when (pendingOperation) {
                 "=" -> operand1 = value
                 "/" -> operand1 = if (value == 0.0) {
                     Double.NaN //handle attempt to divide by zero
@@ -104,8 +109,30 @@ class MainActivity : AppCompatActivity() {
         newNumber.setText("")
     }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        when {
+            operand1 != null -> {
+                outState.putDouble(STATE_OPERAND1, operand1!!)
+                outState.putBoolean(STATE_OPERAND1_STORED, true)
+            }
+        }
+            outState.putString(STATE_PENDING_OPERATION, pendingOperation)
+        }
 
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        when {
+            savedInstanceState.getBoolean(STATE_OPERAND1_STORED,false) -> {
+                this.operand1 = savedInstanceState.getDouble(STATE_OPERAND1)
+            }
+            else -> {
+                this.operand1 = null
+            }
+        }
+        pendingOperation = savedInstanceState.getString(STATE_PENDING_OPERATION).toString()
+        displayOperation.text = pendingOperation
     }
 }
+
+
